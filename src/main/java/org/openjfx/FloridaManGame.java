@@ -50,7 +50,7 @@ public class FloridaManGame {
     }
 
     public static void initializeHeadlines() {
-        // Create Headline objects
+
         Headline headline1 = new Headline("Five Finalists Vying for the Most ‘Benevolent Beard’ in America", "Beard", new String[]{"Hat", "Smile", "Pet"});
         Headline headline2 = new Headline("Florida Man Accused of Posing as Legitimate Pizzeria", "Pizzeria", new String[]{"Doctor", "Professor", "Police Officer"});
         Headline headline3 = new Headline("Florida man speeding from deputies in stolen car gets trapped in tennis court fence on Holmes Beach", "tennis court fence", new String[]{"parking lot", "shopping mall", "bridge"});
@@ -62,7 +62,6 @@ public class FloridaManGame {
         Headline headline9 = new Headline("Florida Man Driving Car Full of Stolen Mail Crashes into Trailer Full of Alpacas", "Alpacas", new String[]{"Llamas", "Sheep", "Goats"});
         Headline headline10 = new Headline("Florida man busted for stealing his twin brother’s identity", "twin brother", new String[]{"cousin", "neighbor", "friend"});
 
-// Add Headline objects to HeadlineBank
         HeadlineBank.addHeadline(headline1);
         HeadlineBank.addHeadline(headline2);
         HeadlineBank.addHeadline(headline3);
