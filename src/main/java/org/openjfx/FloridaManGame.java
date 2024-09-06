@@ -1,12 +1,16 @@
 package org.openjfx;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class FloridaManGame {
 
     private static int correctGuesses = 0;
     private static int incorrectGuesses = 0;
     private static double percentCorrect = 0;
-    private static int questionsLeft = HeadlineBank.getTotalQuestions();
-    private static Headline currentHeadline = HeadlineBank.getHeadlines().get(0);
+    private static int questionsLeft = HeadlineBank.getHeadlines().size();
+    private static int totalQuestions = 0;
+    private static Headline currentHeadline;
 
     public static int getCorrectGuesses() {
         return correctGuesses;
@@ -30,15 +34,15 @@ public class FloridaManGame {
     }
 
     public static void setPercentCorrect() {
-        FloridaManGame.percentCorrect = (1.0*correctGuesses)/(1.0*HeadlineBank.getTotalQuestions());
+        FloridaManGame.percentCorrect = Math.round(100 * ((1.0*correctGuesses)/(1.0*(totalQuestions-questionsLeft))));
     }
 
     public static int getQuestionsLeft() {
         return questionsLeft;
     }
 
-    public static void setQuestionsLeft(int questionsLeft) {
-        FloridaManGame.questionsLeft = questionsLeft;
+    public static void decQuestionsLeft() {
+        FloridaManGame.questionsLeft--;
     }
 
     public static Headline getCurrentHeadline() {
@@ -50,17 +54,19 @@ public class FloridaManGame {
     }
 
     public static void initializeHeadlines() {
+        System.out.print("Starting");
 
-        Headline headline1 = new Headline("Five Finalists Vying for the Most ‘Benevolent Beard’ in America", "Beard", new String[]{"Hat", "Smile", "Pet"});
-        Headline headline2 = new Headline("Florida Man Accused of Posing as Legitimate Pizzeria", "Pizzeria", new String[]{"Doctor", "Professor", "Police Officer"});
-        Headline headline3 = new Headline("Florida man speeding from deputies in stolen car gets trapped in tennis court fence on Holmes Beach", "tennis court fence", new String[]{"parking lot", "shopping mall", "bridge"});
-        Headline headline4 = new Headline("Florida cop claims Burger King put dirt on his food", "dirt", new String[]{"sand", "hair", "bugs"});
-        Headline headline5 = new Headline("Florida man tries to evade arrest by cartwheeling away from cops", "cartwheeling", new String[]{"dancing", "skateboarding", "sprinting"});
-        Headline headline6 = new Headline("Florida man attempting to time travel crashes into strip mall", "time travel", new String[]{"teleport", "fly", "swim"});
-        Headline headline7 = new Headline("Puppy shoots Florida man, deputies say", "Puppy", new String[]{"Kitten", "Bird", "Hamster"});
-        Headline headline8 = new Headline("Florida Man Steals Excavator, Goes for Joyride, Crashes into Walmart", "Excavator", new String[]{"Tractor", "Bulldozer", "Crane"});
-        Headline headline9 = new Headline("Florida Man Driving Car Full of Stolen Mail Crashes into Trailer Full of Alpacas", "Alpacas", new String[]{"Llamas", "Sheep", "Goats"});
-        Headline headline10 = new Headline("Florida man busted for stealing his twin brother’s identity", "twin brother", new String[]{"cousin", "neighbor", "friend"});
+        Headline headline1 = new Headline("Five Finalists Vying for the Most ‘Benevolent Beard’ in America.", "Beard", new ArrayList<>(Arrays.asList("Hat", "Smile", "Pet")));
+        Headline headline2 = new Headline("Florida Man Accused of Posing as Legitimate Pizzeria.", "Pizzeria", new ArrayList<>(Arrays.asList("Doctor", "Professor", "Police Officer")));
+        Headline headline3 = new Headline("Florida man speeding from deputies in stolen car gets trapped in tennis court fence on Holmes Beach.", "tennis court fence", new ArrayList<>(Arrays.asList("parking lot", "shopping mall", "bridge")));
+        Headline headline4 = new Headline("Florida cop claims Burger King put dirt on his food.", "dirt", new ArrayList<>(Arrays.asList("sand", "hair", "bugs")));
+        Headline headline5 = new Headline("Florida man tries to evade arrest by cartwheeling away from cops.", "cartwheeling", new ArrayList<>(Arrays.asList("dancing", "skateboarding", "sprinting")));
+        Headline headline6 = new Headline("Florida man attempting to time travel crashes into strip mall.", "time travel", new ArrayList<>(Arrays.asList("teleport", "fly", "swim")));
+        Headline headline7 = new Headline("Puppy shoots Florida man, deputies say.", "Puppy", new ArrayList<>(Arrays.asList("Kitten", "Bird", "Hamster")));
+        Headline headline8 = new Headline("Florida Man Steals Excavator, Goes for Joyride, Crashes into Walmart.", "Excavator", new ArrayList<>(Arrays.asList("Tractor", "Bulldozer", "Crane")));
+        Headline headline9 = new Headline("Florida Man Driving Car Full of Stolen Mail Crashes into Trailer Full of Alpacas.", "Alpacas", new ArrayList<>(Arrays.asList("Llamas", "Sheep", "Goats")));
+        Headline headline10 = new Headline("Florida man busted for stealing his twin brother’s identity.", "twin brother", new ArrayList<>(Arrays.asList("cousin", "neighbor", "friend")));
+
 
         HeadlineBank.addHeadline(headline1);
         HeadlineBank.addHeadline(headline2);
@@ -74,6 +80,9 @@ public class FloridaManGame {
         HeadlineBank.addHeadline(headline10);
 
         HeadlineBank.shuffleHeadlines();
+        questionsLeft = HeadlineBank.getHeadlines().size();
+        totalQuestions = HeadlineBank.getHeadlines().size();
+
         loadNewHeadline();
 
     }
@@ -93,6 +102,10 @@ public class FloridaManGame {
             return false;
         }
     }
+
+
+
+
 
 
 }

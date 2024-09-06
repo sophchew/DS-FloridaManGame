@@ -1,16 +1,21 @@
 package org.openjfx;
 
 import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class Headline {
     private String story;
     private String keyword;
-    private String[] options;
+    private ArrayList<String> options;
 
-    public Headline(String story, String keyword, String[] options) {
+
+    public Headline(String story, String keyword, ArrayList<String> options) {
         this.story = story;
         this.keyword = keyword;
         this.options = options;
+        options.add(keyword);
+        Collections.shuffle(this.options);
     }
 
     public String getStory() {
@@ -25,16 +30,28 @@ public class Headline {
         return keyword;
     }
 
+
     public void setKeyword(String keyword) {
         this.keyword = keyword;
     }
 
-    public String[] getOptions() {
+    public ArrayList<String> getOptions() {
         return options;
     }
 
-    public void setOptions(String[] options) {
+    public void setOptions(ArrayList<String> options) {
         this.options = options;
+    }
+
+    public String getQuestionString(){
+        String returnString = this.story;
+        return returnString.replace(this.keyword, "——————————");
+
+    }
+
+    public String getReplacedString(String word){
+        String returnString = this.story;
+        return returnString.replace(this.keyword, word);
     }
 
 
