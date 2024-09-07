@@ -2,12 +2,17 @@ package org.openjfx;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.text.Font;
+import javafx.stage.Stage;
 
 import javax.swing.*;
+import java.io.IOException;
 
 public class GameViewController {
 
@@ -83,6 +88,7 @@ public class GameViewController {
     @FXML
     public void onOptionClick(ActionEvent event){
         RadioButton option = (RadioButton) event.getSource();
+
         if(optionGuessed != null && !optionGuessed.equals(option)){
             optionGuessed.setSelected(false);
         }
@@ -95,6 +101,9 @@ public class GameViewController {
     @FXML
     public void onSubmitClick(ActionEvent event){
         Button buttonClicked = (Button) event.getSource();
+        if(!opt1.isSelected() && !opt2.isSelected() && !opt3.isSelected() && !opt4.isSelected()) {
+            return;
+        }
         if(buttonClicked.getText().equals("Submit!")) {
             boolean correct = FloridaManGame.checkGuess(optionGuessed.getText());
             if(correct){
@@ -132,6 +141,7 @@ public class GameViewController {
             loadNewHeadlineUI();
         } else {
             submitButton.setVisible(false);
+            changeScene("GameOver.fxml", (Stage) (submitButton.getScene().getWindow()));
         }
 
     }
@@ -172,6 +182,20 @@ public class GameViewController {
         submitButton.setText("Submit!");
 
         guessResultLabel.setVisible(false);
+    }
+
+    public void changeScene(String fxmlFile, Stage currentStage) {
+
+        try {
+            Parent newRoot = FXMLLoader.load(getClass().getResource(fxmlFile));
+            Scene newScene = new Scene(newRoot);
+            currentStage.setScene(newScene);
+            currentStage.show();
+        } catch (IOException e) {
+            e.printStackTrace(); // Handle exception appropriately
+        }
+
+
     }
 
 }
