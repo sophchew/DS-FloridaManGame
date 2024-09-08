@@ -16,6 +16,7 @@ public class Headline {
         this.options = options;
         options.add(keyword);
         Collections.shuffle(this.options);
+        HeadlineBank.addHeadline(this);
     }
 
     public String getStory() {

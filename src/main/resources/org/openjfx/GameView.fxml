@@ -16,11 +16,20 @@
                <children>
                   <HBox prefHeight="100.0" prefWidth="446.0">
                      <children>
-                        <Label fx:id="questionsLeftLabel" text="Label">
-                           <HBox.margin>
-                              <Insets left="20.0" top="20.0" />
-                           </HBox.margin>
-                        </Label>
+                        <VBox prefHeight="100.0" prefWidth="371.0">
+                           <children>
+                              <Label fx:id="questionsLeftLabel" text="Label">
+                                 <VBox.margin>
+                                    <Insets left="20.0" top="20.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label fx:id="warningLabel" prefHeight="54.0" prefWidth="326.0" text="Label" visible="false" wrapText="true">
+                                 <VBox.margin>
+                                    <Insets left="20.0" top="20.0" />
+                                 </VBox.margin>
+                              </Label>
+                           </children>
+                        </VBox>
                      </children>
                   </HBox>
                   <VBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="555.0">

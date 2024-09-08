@@ -42,6 +42,8 @@ public class GameViewController {
     Label questionsLeftLabel;
     @FXML
     Label guessResultLabel;
+    @FXML
+    Label warningLabel;
 
 
     public void initialize(){
@@ -81,6 +83,11 @@ public class GameViewController {
 
         guessResultLabel.setFont(Font.font("Space Mono", 20));
 
+        warningLabel.setVisible(false);
+        warningLabel.setText("Select an option before submitting!");
+        warningLabel.setStyle("-fx-text-fill: red");
+        warningLabel.setFont(Font.font("Space Mono", 12));
+
 
 
     }
@@ -88,6 +95,7 @@ public class GameViewController {
     @FXML
     public void onOptionClick(ActionEvent event){
         RadioButton option = (RadioButton) event.getSource();
+        warningLabel.setVisible(false);
 
         if(optionGuessed != null && !optionGuessed.equals(option)){
             optionGuessed.setSelected(false);
@@ -102,6 +110,7 @@ public class GameViewController {
     public void onSubmitClick(ActionEvent event){
         Button buttonClicked = (Button) event.getSource();
         if(!opt1.isSelected() && !opt2.isSelected() && !opt3.isSelected() && !opt4.isSelected()) {
+            warningLabel.setVisible(true);
             return;
         }
         if(buttonClicked.getText().equals("Submit!")) {
@@ -135,8 +144,9 @@ public class GameViewController {
 
     public void nextQuestion(){
         FloridaManGame.decQuestionsLeft();
+        FloridaManGame.setPercentCorrect();
         if(FloridaManGame.getQuestionsLeft() != 0){
-            FloridaManGame.setPercentCorrect();
+
             FloridaManGame.loadNewHeadline();
             loadNewHeadlineUI();
         } else {
@@ -148,7 +158,6 @@ public class GameViewController {
 
     public void loadNewHeadlineUI(){
         questionLabel.setText(FloridaManGame.getCurrentHeadline().getQuestionString());
-
 
         opt1.setText(FloridaManGame.getCurrentHeadline().getOptions().get(0));
         opt2.setText(FloridaManGame.getCurrentHeadline().getOptions().get(1));
@@ -164,7 +173,6 @@ public class GameViewController {
         opt2.setSelected(false);
         opt3.setSelected(false);
         opt4.setSelected(false);
-
 
         questionsLeftLabel.setText("Questions Left: " + FloridaManGame.getQuestionsLeft());
         incorrectLabel.setText("Incorrect Guesses: " + FloridaManGame.getIncorrectGuesses());

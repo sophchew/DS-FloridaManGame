@@ -35,12 +35,12 @@
             </Label>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="replayButton" mnemonicParsing="false" text="Button">
+                  <Button fx:id="replayButton" mnemonicParsing="false" onAction="#onReplayClick" text="Button">
                      <HBox.margin>
                         <Insets right="20.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="quitButton" mnemonicParsing="false" text="Button">
+                  <Button fx:id="quitButton" mnemonicParsing="false" onAction="#onQuit" text="Button">
                      <HBox.margin>
                         <Insets left="20.0" />
                      </HBox.margin>

@@ -14,6 +14,10 @@ public class HeadlineBank {
         HeadlineBank.headlines.add(headline);
     }
 
+    public static void setHeadlines(ArrayList<Headline> headlines) {
+        HeadlineBank.headlines = headlines;
+    }
+
     public static int getTotalQuestions() {
         return totalQuestions;
     }

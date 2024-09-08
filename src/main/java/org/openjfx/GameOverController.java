@@ -1,9 +1,16 @@
 package org.openjfx;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.text.Font;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class GameOverController {
 
@@ -52,14 +59,29 @@ public class GameOverController {
     }
 
     public void onReplayClick(){
-        //reset game
+        changeScene("GameView.fxml" ,(Stage) (replayButton.getScene().getWindow()));
 
     }
 
     public void onQuit(){
         //close app
+        Platform.exit();
+        System.exit(0);
     }
 
+    public void changeScene(String fxmlFile, Stage currentStage) {
+
+        try {
+            Parent newRoot = FXMLLoader.load(getClass().getResource(fxmlFile));
+            Scene newScene = new Scene(newRoot);
+            currentStage.setScene(newScene);
+            currentStage.show();
+        } catch (IOException e) {
+            e.printStackTrace(); // Handle exception appropriately
+        }
+
+
+    }
 
 
 }

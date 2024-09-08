@@ -54,7 +54,12 @@ public class FloridaManGame {
     }
 
     public static void initializeHeadlines() {
-        System.out.print("Starting");
+
+        HeadlineBank.setHeadlines(new ArrayList<Headline>());
+        currentHeadline = null;
+        incorrectGuesses = 0;
+        correctGuesses = 0;
+        percentCorrect = 0;
 
         Headline headline1 = new Headline("Five Finalists Vying for the Most ‘Benevolent Beard’ in America.", "Beard", new ArrayList<>(Arrays.asList("Hat", "Smile", "Pet")));
         Headline headline2 = new Headline("Florida Man Accused of Posing as Legitimate Pizzeria.", "Pizzeria", new ArrayList<>(Arrays.asList("Doctor", "Professor", "Police Officer")));
@@ -66,18 +71,6 @@ public class FloridaManGame {
         Headline headline8 = new Headline("Florida Man Steals Excavator, Goes for Joyride, Crashes into Walmart.", "Excavator", new ArrayList<>(Arrays.asList("Tractor", "Bulldozer", "Crane")));
         Headline headline9 = new Headline("Florida Man Driving Car Full of Stolen Mail Crashes into Trailer Full of Alpacas.", "Alpacas", new ArrayList<>(Arrays.asList("Llamas", "Sheep", "Goats")));
         Headline headline10 = new Headline("Florida man busted for stealing his twin brother’s identity.", "twin brother", new ArrayList<>(Arrays.asList("cousin", "neighbor", "friend")));
-
-
-        HeadlineBank.addHeadline(headline1);
-        HeadlineBank.addHeadline(headline2);
-        HeadlineBank.addHeadline(headline3);
-        HeadlineBank.addHeadline(headline4);
-        HeadlineBank.addHeadline(headline5);
-        HeadlineBank.addHeadline(headline6);
-        HeadlineBank.addHeadline(headline7);
-        HeadlineBank.addHeadline(headline8);
-        HeadlineBank.addHeadline(headline9);
-        HeadlineBank.addHeadline(headline10);
 
         HeadlineBank.shuffleHeadlines();
         questionsLeft = HeadlineBank.getHeadlines().size();
